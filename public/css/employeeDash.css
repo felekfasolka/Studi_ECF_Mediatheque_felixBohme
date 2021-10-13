@@ -1,0 +1,11 @@
+/* public/css/employeedash.css */
+:root {
+    --text-color: #2B2118;
+    --text-color-dark: #2B2118;
+    --table-cell-color: #2B2118;
+    --sidebar-border-color: #2B2118;
+    --sidebar-bg: #BCC4DB;
+    --sidebar-menu-header-color: #2B2118;
+    --sidebar-logo-color: #2B2118;
+    --bs-body-color: #2B2118;
+}
