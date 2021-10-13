@@ -6,7 +6,14 @@ use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -26,5 +33,15 @@ class UserCrudController extends AbstractCrudController
             ->setPermission(Action::EDIT, 'ROLE_EDITOR')
             ->setPermission(Action::BATCH_DELETE, 'ROLE_EDITOR')
             ;
+    }
+
+    public function configureFields(string $pageName): iterable
+    {
+        yield TextField::new('firstName');
+        yield TextField::new('surName');
+        yield EmailField::new('email');
+        yield AssociationField::new('books');
+        yield DateField::new('birthdate');
+        yield BooleanField::new('isEnabled');
     }
 }
