@@ -23,7 +23,7 @@ class GenreCrudController extends AbstractCrudController
             ->setPermission(Action::INDEX, 'ROLE_EDITOR')
             ->setPermission(Action::NEW, 'ROLE_EDITOR')
             ->setPermission(Action::DELETE, 'ROLE_ADMIN')
-            ->setPermission(Action::DETAIL, 'ROLE_EDITOR')
+            ->setPermission(Action::DETAIL, 'ROLE_USER')
             ->setPermission(Action::EDIT, 'ROLE_EDITOR')
             ->setPermission(Action::BATCH_DELETE, 'ROLE_EDITOR')
             ;

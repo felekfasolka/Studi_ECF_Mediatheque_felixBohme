@@ -27,7 +27,7 @@ class UserCrudController extends AbstractCrudController
 
         return $actions
             ->setPermission(Action::INDEX, 'ROLE_EDITOR')
-            ->setPermission(Action::NEW, 'ROLE_EDITOR')
+            ->setPermission(Action::NEW, 'ROLE_ADMIN')
             ->setPermission(Action::DELETE, 'ROLE_ADMIN')
             ->setPermission(Action::DETAIL, 'ROLE_EDITOR')
             ->setPermission(Action::EDIT, 'ROLE_EDITOR')
@@ -38,10 +38,11 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield TextField::new('firstName');
-        yield TextField::new('surName');
+        yield TextField::new('surName')->setLabel('Last Name');
+        yield TextField::new('adress')->setLabel('Address');
         yield EmailField::new('email');
-        yield AssociationField::new('books');
         yield DateField::new('birthdate');
-        yield BooleanField::new('isEnabled');
+        yield AssociationField::new('books')->setLabel('Items Borrowed')->onlyOnIndex();
+        yield BooleanField::new('isEnabled')->setLabel('Activated');
     }
 }

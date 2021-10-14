@@ -3,6 +3,7 @@
 namespace App\Controller\Employee;
 
 use App\Entity\Book;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\QueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FilterCollection;
@@ -33,12 +34,12 @@ class EmpMediaWaitingCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInSingular('Waiting Item')
-            ->setEntityLabelInPlural('Waiting Items')
+            ->setEntityLabelInSingular('Waiting Item for Pick-up')
+            ->setEntityLabelInPlural('Waiting Items for Pick-up')
             ->setSearchFields(['title', 'author', 'genre.type'])
-            ->setDefaultSort(['dateOfPublication' => 'ASC'])
+            ->setDefaultSort(['isBorrowedAt' => 'DESC'])
             ->showEntityActionsInlined()
-            ->setHelp('index', 'This section shows all Items waiting for Confirmation');;
+            ->setHelp('index', 'This section shows all Items waiting for Confirmation at the time of Pick-up');;
 
     }
 
