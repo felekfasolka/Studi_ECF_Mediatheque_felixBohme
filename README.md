@@ -64,13 +64,24 @@ heroku config:set APP_ENV=prod
 ```
 git push heroku master
 ```
+- create database structure via doctrine
 ```
-heroku open
+heroku run php bin/console doctrine:schema:update --force
 ```
 - make sure heroku buildpacke and config vars are properly set up
 - create and connect to Database (for example ClearDB MySQL)
+- Insert demo data or create at least one Employee User
+- Open App
+```
+heroku open
+```
 
-
+## Database Demo Import
+- For 2 Demo Employee Accounts
+```
+INSERT INTO `employee` VALUES(1, 'employee@mail.com', '[\"ROLE_EDITOR\"]', '$2y$13$DTwFLXYOn6NU5FiajKSvfuDbQa4.4cY5F8Be6NPydVp8fHDQP4L4O');
+INSERT INTO `employee` VALUES(2, 'boss@mail.com', '[\"ROLE_EDITOR\"]', '$2y$13$DTwFLXYOn6NU5FiajKSvfuDbQa4.4cY5F8Be6NPydVp8fHDQP4L4O');
+```
 ## Key features
 - 2 different Backends, depending on the User-Role (auto-routing from login-Page)
 - Login page (simple static page) - http://127.0.0.1:8000/
@@ -98,5 +109,5 @@ heroku open
 ## Known issues
 - No tests yet
 - No User profiles
-- User entry completion has to be carried out by an Employee on-site 
+- User entry completion has to be carried out be an Employee on-site 
 - Reservations older than 3 days are not automatically deleted yet. Please find the CLI tool command to count the old Reservations ```symfony console app:reservation:cleanup```
