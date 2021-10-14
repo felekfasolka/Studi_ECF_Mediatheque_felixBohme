@@ -98,5 +98,5 @@ heroku open
 ## Known issues
 - No tests yet
 - No User profiles
-- User entry completion has to be carried out be an Employee on-site 
+- User entry completion has to be carried out by an Employee on-site 
 - Reservations older than 3 days are not automatically deleted yet. Please find the CLI tool command to count the old Reservations ```symfony console app:reservation:cleanup```
