@@ -8,9 +8,6 @@ security:
             algorithm: auto
         App\Entity\Employee:
             algorithm: auto
-        App\Entity\Test:
-            algorithm: auto
-
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
