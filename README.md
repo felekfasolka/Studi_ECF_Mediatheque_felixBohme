@@ -34,7 +34,7 @@ This is a PHP/HTML/JS/CSS coding project for the internal usage of STUDI during 
 - Try ```http://127.0.0.1:8000/``` 
 - You can sign in and create new User-Accounts (Register).
 - IMPORTANT: New Accounts have to be manually enabled by an Employee in the backoffice.
-- Login Credential Scheme for predefined User logins (```UserFixtures.php```):```userx@mail.com``` password:```userx``` where ```x``` is a number from ```0 to 24``` (example: ```user5@mail.com | user5``` OR ```user20@mail.com | user20```)
+- Login Credential Scheme for predefined User logins (```UserFixtures.php```):```userx@mail.com``` password:```userxpassword``` where ```x``` is a number from ```0 to 24``` (example: ```user5@mail.com | user5password``` OR ```user20@mail.com | user20password```)
 - To access backoffice try to log in with credentials (see Database Demo Import below) ```employee@mail.com | employee``` OR ```boss@mail.com | employee``` for example
 
 ## Database Demo Import
