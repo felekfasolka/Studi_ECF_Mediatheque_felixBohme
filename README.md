@@ -14,6 +14,7 @@ This is a PHP/HTML/JS/CSS coding project for the internal usage of STUDI during 
  - composer
  - Doctrine
  - EasyAdminBundle
+ - Fixtures with Faker Bundle
  - Twitter Bootstrap 5
  - PhpStorm 2021.2.2
 
@@ -22,27 +23,22 @@ This is a PHP/HTML/JS/CSS coding project for the internal usage of STUDI during 
 - Setup IDE
 - Clone this repo ```gh repo clone felekfasolka/Studi_ECF_Mediatheque_felixBohme ```
 - Change ```.env``` file to match your local database
-- If you want to run dev commands, you should switch back to the ```DEV``` environment
+- The project is still in ```dev``` environment
 - Run ```composer install``` in your IDE
 - Create MySQL or MariaDB database with name ```mediatheque```. 
 ```php bin/console doctrine:database:create```
 - Initiate the database migration of the Entities with  ```php bin/console make:migration```
 - Execute the migration with ```php bin/console doctrine:migrations:migrate```
-- If you want to fill the database with some demo users, simply run ```php bin/console doctrine:fixtures:load```
-- Manually create Employee user(s) with ```ROLE_EDITOR``` (database name ```employee```) to manage the mediatheque and their users (backoffice). See included SQL-script. Without at least one ```employee``` there will be no backend-access. Passwords can be manually hashed with symfony (```php bin/console security:hash-password```)
+- If you want to fill the database with some demo content (highly recommended), simply run ```php bin/console doctrine:fixtures:load```
+- The command will populate the Table ```user``` with 25 demo users (all User accounts are not activated yet)
+- Two Employee Users with ```ROLE_EDITOR``` will be created to manage the backoffice
+- 10.000 demo Items in the table ```books``` will be created
 - run ```php bin/console server:run``` to launch embedded server OR use external services like XAMPP
 - Try ```http://127.0.0.1:8000/``` 
 - You can sign in and create new User-Accounts (Register).
 - IMPORTANT: New Accounts have to be manually enabled by an Employee in the backoffice.
 - Login Credential Scheme for predefined User logins (```UserFixtures.php```):```userx@mail.com``` password:```userxpassword``` where ```x``` is a number from ```0 to 24``` (example: ```user5@mail.com | user5password``` OR ```user20@mail.com | user20password```)
-- To access backoffice try to log in with credentials (see Database Demo Import below) ```employee@mail.com | employee``` OR ```boss@mail.com | employee``` for example
-
-## Database Demo Import
-- For two demo Employee Accounts run the following SQL Queries:
-```
-INSERT INTO `employee` VALUES(1, 'employee@mail.com', '[\"ROLE_EDITOR\"]', '$2y$13$DTwFLXYOn6NU5FiajKSvfuDbQa4.4cY5F8Be6NPydVp8fHDQP4L4O');
-INSERT INTO `employee` VALUES(2, 'boss@mail.com', '[\"ROLE_EDITOR\"]', '$2y$13$DTwFLXYOn6NU5FiajKSvfuDbQa4.4cY5F8Be6NPydVp8fHDQP4L4O');
-```
+- To access backoffice try to log in with credentials ```employee@mail.com | employee``` OR ```boss@mail.com | employee```
 
 ## Heroku Deployment
 - see [Heroku Documentation](https://devcenter.heroku.com/articles/deploying-symfony4) or follow below
@@ -78,7 +74,7 @@ git push heroku master
 ```
 heroku run php bin/console doctrine:schema:update --force
 ```
-- make sure heroku buildpacke and config vars are properly set up
+- make sure heroku buildpacks and config vars are properly set up
 - create and connect to Database (for example ClearDB MySQL)
 - Insert demo data or create at least one Employee User
 - Open App
@@ -108,7 +104,7 @@ heroku open
 - Employees can ```View/Edit/Delete``` User entries (except passwords)
 - Search bar for media items
 - Image Upload for Employees
-- Secured throughs different mechanisms 
+- Secured through different mechanisms 
 
 ## Known issues
 - No tests yet
