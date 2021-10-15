@@ -22,6 +22,7 @@ This is a PHP/HTML/JS/CSS coding project for the internal usage of STUDI during 
 - Setup IDE
 - Clone this repo ```gh repo clone felekfasolka/Studi_ECF_Mediatheque_felixBohme ```
 - Change ```.env``` file to match your local database
+- If you want to run dev commands, you should switch back to the ```DEV``` environment
 - Run ```composer install``` in your IDE
 - Create MySQL or MariaDB database with name ```mediatheque```. 
 ```php bin/console doctrine:database:create```
