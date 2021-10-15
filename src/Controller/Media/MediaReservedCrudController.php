@@ -78,7 +78,6 @@ class MediaReservedCrudController extends AbstractCrudController
         $qb = $this->get(EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
         $qb->andWhere('entity.isBorrowedBy = :id');
         $qb->andWhere('entity.isConfirmed = false');
-        $qb->andWhere('entity.isRequested = true');
         $qb->setParameter('id', $this->getUser()->getId());
 
         return $qb;

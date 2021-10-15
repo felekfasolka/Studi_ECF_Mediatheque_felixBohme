@@ -33,7 +33,7 @@ class Book
     private $coverPicture;
 
     /**
-     * @ORM\Column(type="date_immutable")
+     * @ORM\Column(type="date")
      */
     private $dateOfPublication;
 
@@ -145,12 +145,12 @@ class Book
         return $this;
     }
 
-    public function getDateOfPublication(): ?\DateTimeImmutable
+    public function getDateOfPublication(): ?\DateTime
     {
         return $this->dateOfPublication;
     }
 
-    public function setDateOfPublication(\DateTimeImmutable $dateOfPublication): self
+    public function setDateOfPublication(\DateTime $dateOfPublication): self
     {
         $this->dateOfPublication = $dateOfPublication;
 
