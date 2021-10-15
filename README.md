@@ -21,21 +21,30 @@ This is a PHP/HTML/JS/CSS coding project for the internal usage of STUDI during 
 - Install web server depending on your machine
 - Setup IDE
 - Clone this repo ```gh repo clone felekfasolka/Studi_ECF_Mediatheque_felixBohme ```
-- Create MySQL or MariaDB database with name ```mediatheque```
 - Change ```.env``` file to match your local database
 - Run ```composer install``` in your IDE
-- If you want to fill the database with some demo users, simply run ```bin/console doctrine:fixtures:load```
-- (Optinal) If you also want the 10.000 demo items in the mediatheque please execute the included SQL-script
-- Manually create user(s) with Editor roles (database name ```employee```) to manage the mediatheque and their users (backoffice). See included SQL-script. Without at least one ```employee``` there will be no backend-access. Passwords can be manually hashed with symfony (```symfony console security:hash-password```)
-- run ```bin/console server:run``` to launch embedded server OR use external services like XAMPP
+- Create MySQL or MariaDB database with name ```mediatheque```. 
+```php bin/console doctrine:database:create```
+- Initiate the database migration of the Entities with  ```php bin/console make:migration```
+- Execute the migration with ```php bin/console doctrine:migrations:migrate```
+- If you want to fill the database with some demo users, simply run ```php bin/console doctrine:fixtures:load```
+- Manually create Employee user(s) with ```ROLE_EDITOR``` (database name ```employee```) to manage the mediatheque and their users (backoffice). See included SQL-script. Without at least one ```employee``` there will be no backend-access. Passwords can be manually hashed with symfony (```php bin/console security:hash-password```)
+- run ```php bin/console server:run``` to launch embedded server OR use external services like XAMPP
 - Try ```http://127.0.0.1:8000/``` 
 - You can sign in and create new User-Accounts (Register).
 - IMPORTANT: New Accounts have to be manually enabled by an Employee in the backoffice.
-- Login Credential Scheme for predefined User logins:```userx@mail.com``` password:```userx``` where ```x``` is a number from ```0 to 24``` (example: ```user5@mail.com | user5``` OR ```user20@mail.com | user20```
-- To access backoffice try to log in with credentials ```employee@mail.com | employee``` OR ```boss@mail.com | employee```
+- Login Credential Scheme for predefined User logins (```UserFixtures.php```):```userx@mail.com``` password:```userx``` where ```x``` is a number from ```0 to 24``` (example: ```user5@mail.com | user5``` OR ```user20@mail.com | user20```)
+- To access backoffice try to log in with credentials (see Database Demo Import below) ```employee@mail.com | employee``` OR ```boss@mail.com | employee``` for example
+
+## Database Demo Import
+- For two demo Employee Accounts run the following SQL Queries:
+```
+INSERT INTO `employee` VALUES(1, 'employee@mail.com', '[\"ROLE_EDITOR\"]', '$2y$13$DTwFLXYOn6NU5FiajKSvfuDbQa4.4cY5F8Be6NPydVp8fHDQP4L4O');
+INSERT INTO `employee` VALUES(2, 'boss@mail.com', '[\"ROLE_EDITOR\"]', '$2y$13$DTwFLXYOn6NU5FiajKSvfuDbQa4.4cY5F8Be6NPydVp8fHDQP4L4O');
+```
 
 ## Heroku Deployment
-- see https://devcenter.heroku.com/articles/deploying-symfony4 
+- see [Heroku Documentation](https://devcenter.heroku.com/articles/deploying-symfony4) or follow below
 - Install Heroku CLI package
 - Create free Heroku Account
 - Initialize a Git repository and commit the current state
@@ -76,12 +85,6 @@ heroku run php bin/console doctrine:schema:update --force
 heroku open
 ```
 
-## Database Demo Import
-- For 2 Demo Employee Accounts
-```
-INSERT INTO `employee` VALUES(1, 'employee@mail.com', '[\"ROLE_EDITOR\"]', '$2y$13$DTwFLXYOn6NU5FiajKSvfuDbQa4.4cY5F8Be6NPydVp8fHDQP4L4O');
-INSERT INTO `employee` VALUES(2, 'boss@mail.com', '[\"ROLE_EDITOR\"]', '$2y$13$DTwFLXYOn6NU5FiajKSvfuDbQa4.4cY5F8Be6NPydVp8fHDQP4L4O');
-```
 ## Key features
 - 2 different Backends, depending on the User-Role (auto-routing from login-Page)
 - Login page (simple static page) - http://127.0.0.1:8000/
