@@ -66,17 +66,32 @@ git commit -m "Heroku Procfile"
 ```
 heroku config:set APP_ENV=prod
 ```
+- Clear Cache
+```
+php bin/console cache:clear
+```
 - Deploy to Heroku
 ```
 git push heroku master
 ```
-- create database structure via doctrine
+- create and connect to Database (for example ClearDB MySQL)
+```
+heroku addons:create cleardb:ignite
+```
+- make sure heroku buildpacks and config vars are properly set up
+- create database via doctrine
+```
+heroku run php bin/console doctrine:database:create
+```
+- create tables via doctrine
 ```
 heroku run php bin/console doctrine:schema:update --force
 ```
-- make sure heroku buildpacks and config vars are properly set up
-- create and connect to Database (for example ClearDB MySQL)
-- Insert demo data or create at least one Employee User
+- create at least one Employee User via SQL Query
+```
+INSERT INTO `employee` VALUES(1, 'employee@mail.com', '[\"ROLE_EDITOR\"]', '$2y$13$DTwFLXYOn6NU5FiajKSvfuDbQa4.4cY5F8Be6NPydVp8fHDQP4L4O');
+INSERT INTO `employee` VALUES(2, 'boss@mail.com', '[\"ROLE_EDITOR\"]', '$2y$13$DTwFLXYOn6NU5FiajKSvfuDbQa4.4cY5F8Be6NPydVp8fHDQP4L4O');
+```
 - Open App
 ```
 heroku open
